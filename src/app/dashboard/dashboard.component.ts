@@ -4,11 +4,12 @@ import { Options } from 'fullcalendar';
 
 @Component({
   selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html'
+  templateUrl: './dashboard.component.html',
+  styles: ['./dashboard.component.scss']
 })
 export class DashBoardComponent implements OnInit {
   calendarOptions: Options;
-  displayEvent: any;
+  
   @ViewChild(CalendarComponent) ucCalendar: CalendarComponent;
   constructor() {}
   ngOnInit() {
@@ -17,11 +18,22 @@ export class DashBoardComponent implements OnInit {
      this.calendarOptions = {
         editable: true,
         eventLimit: false,
-        locale: 'pt-BR',
+        height: 'auto',
+        locale:'pt-BR',
+        buttonText: {
+          prev:     'Anterior',
+          next:     'Proximo',
+          prevYear: 'Ano Anterior',
+          nextYear: 'Proximo Ano',
+          today:    'Hoje',
+          month:    'Mês',
+          week:     'Semana',
+          day:      'Dia'
+        },
         header: {
-          left: 'prev,next today',
+          left: 'prev,next,today',
           center: 'title',
-          right: 'month,agendaWeek'
+          right: 'prevYear,nextYear'
         },
         events: [{
           title: 'All Day Event',
@@ -78,39 +90,6 @@ export class DashBoardComponent implements OnInit {
           start: yearMonth + '-28'
       }] 
       };
-  }
-
-  clickButton(model: any) {
-    this.displayEvent = model;
-  }
-  eventClick(model: any) {
-    model = {
-      event: {
-        id: model.event.id,
-        start: model.event.start,
-        end: model.event.end,
-        title: model.event.title,
-        allDay: model.event.allDay
-        // other params
-      },
-      duration: {}
-    }
-    this.displayEvent = model;
-  }
-  updateEvent(model: any) {
-    model = {
-      event: {
-        id: model.event.id,
-        start: model.event.start,
-        end: model.event.end,
-        title: model.event.title
-        // other params
-      },
-      duration: {
-        _data: model.duration._data
-      }
-    }
-    this.displayEvent = model;
   }
 
 }
