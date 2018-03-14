@@ -1,0 +1,19 @@
+{
+  "generator-ngx-rocket": {
+    "version": "4.0.0",
+    "props": {
+      "appName": "cfin",
+      "target": [
+        "web"
+      ],
+      "pwa": true,
+      "ui": "material",
+      "layout": "side-menu",
+      "auth": true,
+      "lazy": false,
+      "projectName": "cfin",
+      "packageManager": "npm",
+      "mobile": []
+    }
+  }
+}
