@@ -26,11 +26,11 @@
   "GroupOfProducts": "Grupo De Produtos",
   "UnitOfMeasures": "Unidade De Medidas",
   "TypesOfDocuments": "Tipos De Documentos",
-  "Security":"Segurança",
-  "User":"Usuário",
   "Movement":"Movimentação",
   "FinancialAccounts":"Contas Financeiras",
 	"AvulsesPayments":"Pagamentos Avulsos",
 	"TransfersOfSecurities":"Transferencias De Valores",
-	"RealEstateSales":"Vendas Imobiliarias"
+  "RealEstateSales":"Vendas Imobiliarias",
+  "Security":"Segurança",
+  "User":"Usuário"
   }

@@ -1,3 +1,65 @@
-<p>
-  user-list works!
-</p>
+<div class="container">
+  <mat-card>
+
+    <mat-card-content>
+
+      <div>
+        <mat-form-field>
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Digite o que procura">
+        </mat-form-field>
+      </div>
+
+      <mat-table [dataSource]="dataSource" matSort>
+
+        <!-- Id Column -->
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Id. </mat-header-cell>
+          <mat-cell *matCellDef="let user"> {{user.id}} </mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="userName">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Nome </mat-header-cell>
+          <mat-cell *matCellDef="let user"> {{user.userName}} </mat-cell>
+        </ng-container>
+
+        <!-- cellPhone Column -->
+        <ng-container matColumnDef="email">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+          <mat-cell *matCellDef="let user"> {{user.email}} </mat-cell>
+        </ng-container>
+
+        <!-- cellPhone Column -->
+        <ng-container matColumnDef="cellPhone">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Fone </mat-header-cell>
+          <mat-cell *matCellDef="let user"> {{user.cellPhone}} </mat-cell>
+        </ng-container>
+
+        <!-- actions -->
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef>
+            <button mat-icon-button color="primary" (click)="addNew()">
+              <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+            </button>
+          </mat-header-cell>
+
+          <mat-cell *matCellDef="let row; let i=index;">
+            <button mat-icon-button color="accent" (click)="startEdit(i, row.id, row.title, row.state, row.url, row.created_at, row.updated_at)">
+              <mat-icon aria-label="Edit">edit</mat-icon>
+            </button>
+
+            <button mat-icon-button color="accent" (click)="deleteItem(i, row.id, row.title, row.state, row.url)">
+              <mat-icon aria-label="Delete">delete</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+      </mat-table>
+      <mat-paginator #paginator [pageSize]="8">
+      </mat-paginator>
+    </mat-card-content>
+  </mat-card>
+</div>

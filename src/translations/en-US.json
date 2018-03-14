@@ -26,6 +26,10 @@
   "GroupOfProducts": "Group Of Products",
   "UnitOfMeasures": "Unit Of Measures",
   "TypesOfDocuments": "Types Of Documents",
+  "Movement":"Movement",
+  "FinancialAccounts":"Financial Accounts",
+	"AvulsesPayments":"Avulses Payments",
+	"TransfersOfSecurities":"Transfers Of Securities",
+  "RealEstateSales":"Real Estate Sales",
   "Security":"Security",
-  "User":"User"
-}
+  "User":"User"}
