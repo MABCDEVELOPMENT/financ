@@ -17,7 +17,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { UserModule } from '@app/user/user.module';
-import { DashboardComponent } from '@app/dashboard/dashboard.component';
+
 
 @NgModule({
   imports: [

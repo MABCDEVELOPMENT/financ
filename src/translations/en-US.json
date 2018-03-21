@@ -32,4 +32,17 @@
 	"TransfersOfSecurities":"Transfers Of Securities",
   "RealEstateSales":"Real Estate Sales",
   "Security":"Security",
-  "User":"User"}
+  "User": "User",
+  "user.insert": "User Registration",
+  "user.update": "Change User",
+  "user.delete": "Delete User",
+  "user.username": "User Name",
+  "user.fullname": "Full Name",
+  "user.dateBrith": "Date of Anniversary",
+  "user.email": "Email",
+  "user.password": "Password",
+  "user.confirmPassword": "Confirm Password",
+  "save": "Save",
+  "cancel": "Cancel",
+  "fieldEmpty": "This field must be informed!"
+  }

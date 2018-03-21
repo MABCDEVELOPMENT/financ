@@ -1,7 +1,7 @@
 <div fxFlex>
   <mat-sidenav-container fxFill>
     <mat-sidenav #sidenav [mode]="isMobile ? 'over' : 'side'" [opened]="!isMobile" [disableClose]="!isMobile" ngClass.gt-sm="has-border">
-      <mat-toolbar color="primary">
+      <mat-toolbar >
         <span translate>APP_NAME</span>
         <div fxFlex></div>
         <div>
@@ -163,7 +163,7 @@
 
     <mat-sidenav-content>
 
-      <mat-toolbar color="primary">
+      <mat-toolbar >
         <button class="menu-button" mat-icon-button (click)="sidenav.toggle()" fxHide.gt-sm>
           <mat-icon>menu</mat-icon>
         </button>

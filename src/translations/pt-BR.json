@@ -32,5 +32,17 @@
 	"TransfersOfSecurities":"Transferencias De Valores",
   "RealEstateSales":"Vendas Imobiliarias",
   "Security":"Segurança",
-  "User":"Usuário"
+  "User":"Usuário",
+  "user.insert":"Cadastro de Usuário",
+  "user.update":"Alterar de Usuário",
+  "user.delete":"Excluir Usuário",
+  "user.userName":"Nome do Usuário",
+  "user.fullName":"Nome Completo",
+  "user.dateBrith":"Data de Aniversário",
+  "user.email":"Email",
+  "user.password":"Senha",
+  "user.confirmPassword":"Confirme Senha",
+  "save":"Salvar",
+  "cancel":"Cancelar",
+  "fieldEmpty":"Este campo deve ser informado!"
   }

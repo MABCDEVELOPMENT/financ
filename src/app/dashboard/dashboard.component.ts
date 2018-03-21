@@ -1,140 +1,96 @@
-import {Component, ChangeDetectionStrategy,  ViewChild,  TemplateRef} from '@angular/core';
-import {startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours } from 'date-fns';
-import { Subject } from 'rxjs/Subject';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent} from 'angular-calendar';
-
-const colors: any = {
-  red: {
-    primary: '#ad2121',
-    secondary: '#FAE3E3'
-  },
-  blue: {
-    primary: '#1e90ff',
-    secondary: '#D1E8FF'
-  },
-  yellow: {
-    primary: '#e3bc08',
-    secondary: '#FDF1BA'
-  }
-};
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { CalendarComponent } from 'ng-fullcalendar';
+import { Options } from 'fullcalendar';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent  {
-
-  @ViewChild('modalContent') modalContent: TemplateRef<any>;
-
-  view: string = 'month';
-
-  viewDate: Date = new Date();
-
-  modalData: {
-    action: string;
-    event: CalendarEvent;
-  };
-
-  actions: CalendarEventAction[] = [
-    {
-      label: '<i class="fa fa-fw fa-pencil"></i>',
-      onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.handleEvent('Edited', event);
-      }
-    },
-    {
-      label: '<i class="fa fa-fw fa-times"></i>',
-      onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.events = this.events.filter(iEvent => iEvent !== event);
-        this.handleEvent('Deleted', event);
-      }
-    }
-  ];
-
-  refresh: Subject<any> = new Subject();
-
-  events: CalendarEvent[] = [
-    {
-      start: subDays(startOfDay(new Date()), 1),
-      end: addDays(new Date(), 1),
-      title: 'A 3 day event',
-      color: colors.red,
-      actions: this.actions
-    },
-    {
-      start: startOfDay(new Date()),
-      title: 'An event with no end date',
-      color: colors.yellow,
-      actions: this.actions
-    },
-    {
-      start: subDays(endOfMonth(new Date()), 3),
-      end: addDays(endOfMonth(new Date()), 3),
-      title: 'A long event that spans 2 months',
-      color: colors.blue
-    },
-    {
-      start: addHours(startOfDay(new Date()), 2),
-      end: new Date(),
-      title: 'A draggable and resizable event',
-      color: colors.yellow,
-      actions: this.actions,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
+export class DashBoardComponent implements OnInit {
+  calendarOptions: Options;
+  
+  @ViewChild(CalendarComponent) ucCalendar: CalendarComponent;
+  
+  constructor() {}
+  ngOnInit() {
+    const dateObj = new Date();
+    const yearMonth = dateObj.getUTCFullYear() + '-' + (dateObj.getUTCMonth() + 1);
+     this.calendarOptions = {
+        editable: true,
+        eventLimit: false,
+        height: 'auto',
+        locale:'pt-BR',
+        buttonText: {
+          prev:     'Anterior',
+          next:     'Proximo',
+          prevYear: 'Ano Anterior',
+          nextYear: 'Proximo Ano',
+          today:    'Hoje',
+          month:    'Mês',
+          week:     'Semana',
+          day:      'Dia'
+        },
+        header: {
+          left: 'prev,next,today',
+          center: 'title',
+          right: 'prevYear,nextYear'
+        },
+        events: [{
+          title: 'All Day Event',
+          start: yearMonth + '-01'
       },
-      draggable: true
-    }
-  ];
-
-  activeDayIsOpen: boolean = true;
-
-  constructor(private modal: NgbModal) {}
-
-  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
-    if (isSameMonth(date, this.viewDate)) {
-      if (
-        (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
-        events.length === 0
-      ) {
-        this.activeDayIsOpen = false;
-      } else {
-        this.activeDayIsOpen = true;
-        this.viewDate = date;
-      }
-    }
+      {
+          title: 'Long Event',
+          start: yearMonth + '-07',
+          end: yearMonth + '-10'
+      },
+      {
+          id: 999,
+          title: 'Repeating Event',
+          start: yearMonth + '-09T16:00:00'
+      },
+      {
+          id: 999,
+          title: 'Repeating Event',
+          start: yearMonth + '-16T16:00:00'
+      },
+      {
+          title: 'Conference',
+          start: yearMonth + '-11',
+          end: yearMonth + '-13'
+      },
+      {
+          title: 'Meeting',
+          start: yearMonth + '-12T10:30:00',
+          end: yearMonth + '-12T12:30:00'
+      },
+      {
+          title: 'Lunch',
+          start: yearMonth + '-12T12:00:00'
+      },
+      {
+          title: 'Meeting',
+          start: yearMonth + '-12T14:30:00'
+      },
+      {
+          title: 'Happy Hour',
+          start: yearMonth + '-12T17:30:00'
+      },
+      {
+          title: 'Dinner',
+          start: yearMonth + '-12T20:00:00'
+      },
+      {
+          title: 'Birthday Party',
+          start: yearMonth + '-13T07:00:00'
+      },
+      {
+          title: 'Click for Google',
+          url: 'http://google.com/',
+          start: yearMonth + '-28'
+      }] 
+      };
   }
 
-  eventTimesChanged({
-    event,
-    newStart,
-    newEnd
-  }: CalendarEventTimesChangedEvent): void {
-    event.start = newStart;
-    event.end = newEnd;
-    this.handleEvent('Dropped or resized', event);
-    this.refresh.next();
-  }
-
-  handleEvent(action: string, event: CalendarEvent): void {
-    this.modalData = { event, action };
-    this.modal.open(this.modalContent, { size: 'lg' });
-  }
-
-  addEvent(): void {
-    this.events.push({
-      title: 'New event',
-      start: startOfDay(new Date()),
-      end: endOfDay(new Date()),
-      color: colors.red,
-      draggable: true,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
-      }
-    });
-    this.refresh.next();
-  }
 }
