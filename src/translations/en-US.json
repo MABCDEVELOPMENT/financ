@@ -36,6 +36,7 @@
   "user.insert": "User Registration",
   "user.update": "Change User",
   "user.delete": "Delete User",
+  "user.id":"Id",
   "user.username": "User Name",
   "user.fullname": "Full Name",
   "user.dateBrith": "Date of Anniversary",

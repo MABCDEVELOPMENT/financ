@@ -36,6 +36,7 @@
   "user.insert":"Cadastro de Usuário",
   "user.update":"Alterar de Usuário",
   "user.delete":"Excluir Usuário",
+  "user.id":"Id :",
   "user.userName":"Nome do Usuário",
   "user.fullName":"Nome Completo",
   "user.dateBrith":"Data de Aniversário",

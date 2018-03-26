@@ -19,7 +19,7 @@
             <button mat-menu-item (click)="logout()" translate>Logout</button>
           </mat-menu>
         </div>
-        <div>
+        <!--<div>
           <button mat-icon-button [matMenuTriggerFor]="languageMenu">
             <mat-icon>language</mat-icon>
           </button>
@@ -28,7 +28,7 @@
               {{language}}
             </button>
           </mat-menu>
-        </div>
+        </div>-->
       </mat-toolbar>
       <nav>
         <mat-list>
@@ -141,7 +141,7 @@
               </mat-expansion-panel-header>
               <mat-divider></mat-divider>
               <a mat-list-item routerLink="/userList" routerLinkActive="active" (click)="isMobile && sidenav.close()">
-                <span>User</span>
+                <span translate>User</span>
               </a>
 
             </mat-expansion-panel>
@@ -173,9 +173,9 @@
 
 
       </mat-toolbar>
-      <div flex layout="column" layout-align="center center">
-        <router-outlet></router-outlet>
-      </div>
+      <div flex layout="column" layout-align="center center center center">
+          <router-outlet></router-outlet>
+        </div>
     </mat-sidenav-content>
 
 

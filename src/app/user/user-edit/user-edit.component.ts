@@ -1,33 +1,24 @@
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+
 import {Component, Inject} from '@angular/core';
 import {UserService} from '../../user/user.service';
 import {FormControl, Validators} from '@angular/forms';
 
-
-
 import { User } from '@app/user/user-model';
-import { I18nService } from '@app/core';
 
 @Component({
-  selector: 'app-add.dialog',
-  templateUrl: './user-add.component.html'
+  selector: 'app-edit.dialog',
+  templateUrl: './user-edit.component.html'
 })
 
-export class UserAddDialogComponent {
-  hide:any;
-  hideConf:any;
+export class UserEditDialogComponent {
+  
   confirmPassword:string;
-  
-  public  mask = [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/];
-  
 
-  constructor(public dialogRef: MatDialogRef<UserAddDialogComponent>,
+  constructor(public dialogRef: MatDialogRef<UserEditDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: User,
-              public dataService: UserService,
-              public i18n: I18nService) {
-                  
-               }
-              
+              public dataService: UserService) { }
+
   formControl = new FormControl('', [
     Validators.required
     //Validators.email,
@@ -35,7 +26,7 @@ export class UserAddDialogComponent {
 
   getErrorMessage() {
     return this.formControl.hasError('required') ? 'Required field' :
-           this.formControl.hasError('email') ? 'Not a valid email' :
+      //this.formControl.hasError('email') ? 'Not a valid email' :
         '';
   }
 
@@ -49,6 +40,7 @@ export class UserAddDialogComponent {
 
   public confirmAdd(): void {
 
-    //this.dataService.addUser(this.data);
+    this.dataService.updateUser(this.data);
+    
   }
 }

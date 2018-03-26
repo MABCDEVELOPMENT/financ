@@ -41,8 +41,8 @@
             </button>
           </mat-header-cell>
 
-          <mat-cell *matCellDef="let row; let i=index;">
-            <button mat-icon-button color="accent" (click)="startEdit(i, row.id, row.title, row.state, row.url, row.created_at, row.updated_at)">
+          <mat-cell *matCellDef="let user; let i=index;">
+            <button mat-icon-button color="accent" (click)="startEdit(i, user)">
               <mat-icon aria-label="Edit">edit</mat-icon>
             </button>
 

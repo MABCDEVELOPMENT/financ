@@ -7,7 +7,7 @@ export class User extends DataModel {
     public fullName:string,
     public email:string,
     public cellPhone:string,
-    public dateBrith:Date,
+    public dateBrith:any,
     public password:string,
     public active:boolean,
     public insertUser:User,

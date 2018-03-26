@@ -5,7 +5,7 @@
   </mat-card-header>
 
   <mat-card-content>
-
+    <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
     <mat-form-field>
       <input matInput #input class="form-control" placeholder="{{ 'user.fullName' | translate }}" [(ngModel)]="data.fullName" name="fullName"
         required>
@@ -15,27 +15,26 @@
     <div class="row">
       <div class="column">
         <mat-form-field>
-          <input matInput #input class="form-control" placeholder="{{ 'user.userName' | translate }}" [(ngModel)]="data.userName"
+          <input matInput #input class="form-control" placeholder="{{ 'user.userName' | translate }}" [(ngModel)]="data.userName" 
             name="userName" required>
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>
       <div class="column">
         <mat-form-field>
-          <input matInput [matDatepicker]="picker" placeholder="{{ 'user.dateBrith' | translate }}" [(ngModel)]="data.dateBrith" name="dateBrith"
+           <input matInput #input class="form-control"  [textMask]="{mask:mask}" placeholder="{{ 'user.dateBrith' | translate }}" [(ngModel)]="data.dateBrith" id="dateBrith"
             required>
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+            <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>
     </div>
+
     <mat-form-field>
       <input matInput #input class="form-control" placeholder="{{ 'user.email' | translate }}" [(ngModel)]="data.email" name="email"
         required>
       <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
     </mat-form-field>
-    <div class="row">
+    <!--<div class="row">
       <div class="column">
         <mat-form-field>
           <input matInput #input class="form-control" [type]="hide ? 'password' : 'text'" placeholder="{{ 'user.password' | translate }}"
@@ -46,18 +45,18 @@
       </div>
       <div class="column">
         <mat-form-field>
-          <input matInput #input class="form-control" [type]="hide ? 'password' : 'text'" placeholder="{{ 'user.confirmPassword' | translate }}"
+          <input matInput #input class="form-control" [type]="hideConf ? 'password' : 'text'" placeholder="{{ 'user.confirmPassword' | translate }}"
             [(ngModel)]="confirmPassword" name="confirmPassword" required>
-          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+          <mat-icon matSuffix (click)="hideConf = !hideConf">{{hideConf ? 'visibility' : 'visibility_off'}}</mat-icon>
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>
-    </div>
+    </div>-->
+  </form>
   </mat-card-content>
 
   <mat-card-actions>
-    <button class="mat-raised-button mat-primary" mat-button [type]="submit" [disabled]="formControl.invalid" [mat-dialog-close]="1"
-      (click)="confirmAdd()" translate>{{ 'save' | translate }}</button>
+    <button class="mat-raised-button mat-primary" mat-button [type]="submit" [disabled]="formControl.invalid" [mat-dialog-close]="1" (click)="confirmAdd()" translate>{{ 'save' | translate }}</button>
     <button class="mat-raised-button" mat-button (click)="onNoClick()" tabindex="-1">{{ 'cancel' | translate }}</button>
   </mat-card-actions>
 </mat-card>

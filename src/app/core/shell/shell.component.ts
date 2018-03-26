@@ -5,6 +5,11 @@ import { ObservableMedia } from '@angular/flex-layout';
 
 import { AuthenticationService } from '../authentication/authentication.service';
 import { I18nService } from '../i18n.service';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+import localeEn from '@angular/common/locales/en';
+
+
 
 @Component({
   selector: 'app-shell',
@@ -22,6 +27,11 @@ export class ShellComponent implements OnInit {
   ngOnInit() { }
 
   setLanguage(language: string) {
+    if (language=='pt-BR') {
+      registerLocaleData(localePt);
+    } else if (language=='en-US') {
+      registerLocaleData(localeEn);
+    }
     this.i18nService.language = language;
   }
 
