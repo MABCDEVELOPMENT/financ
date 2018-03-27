@@ -45,5 +45,7 @@
   "user.confirmPassword":"Confirme Senha",
   "save":"Salvar",
   "cancel":"Cancelar",
-  "fieldEmpty":"Este campo deve ser informado!"
-  }
+  "fieldEmpty":"Este campo deve ser informado!",
+  "invalidEmail":"email inválido!",
+  "invalidDate":"Data inválida!"
+}

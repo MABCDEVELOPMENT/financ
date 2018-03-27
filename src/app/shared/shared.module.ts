@@ -6,7 +6,7 @@ import { MaterialModule } from '@app/material.module';
 import { LoaderComponent } from './loader/loader.component';
 import { FormsModule } from '@angular/forms';
 import { TextMaskModule } from 'angular2-text-mask';
-//import { CpfCnpjValidator,CpfValidator,CnpjValidator} from './validators';
+import { CustomValidator } from './validators';
 
 @NgModule({
   imports: [

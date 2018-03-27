@@ -45,5 +45,7 @@
   "user.confirmPassword": "Confirm Password",
   "save": "Save",
   "cancel": "Cancel",
-  "fieldEmpty": "This field must be informed!"
-  }
+  "fieldEmpty": "This field must be informed!",
+  "invalidEmail": "Invalid email!",
+  "invalidDate": "Invalid date!"
+}

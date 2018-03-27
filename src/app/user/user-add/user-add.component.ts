@@ -2,11 +2,11 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {Component, Inject} from '@angular/core';
 import {UserService} from '../../user/user.service';
 import {FormControl, Validators} from '@angular/forms';
-
-
-
 import { User } from '@app/user/user-model';
-import { I18nService } from '@app/core';
+import { I18nService, extract } from '@app/core';
+import { EmailValidator,CustomValidator } from '@app/shared/validators';
+
+
 
 @Component({
   selector: 'app-add.dialog',
@@ -28,14 +28,15 @@ export class UserAddDialogComponent {
                   
                }
               
-  formControl = new FormControl('', [
-    Validators.required
-    //Validators.email,
+  dateBrith = new FormControl('', [
+    Validators.required,
+    CustomValidator.dateValidator
   ]);
 
   getErrorMessage() {
-    return this.formControl.hasError('required') ? 'Required field' :
-           this.formControl.hasError('email') ? 'Not a valid email' :
+    return this.formControl.hasError('required') ? 'fieldEmpty' :
+           EmailValidator.isValidMailFormat(this.formControl['user.email']) ? extract('invalidEmail') :
+           CustomValidator.dateValidator(this.formControl['user.dateBrith']) ? extract('invalidDate') :
         '';
   }
 

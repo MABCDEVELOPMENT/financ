@@ -9,7 +9,7 @@
     <mat-form-field>
       <input matInput #input class="form-control" placeholder="{{ 'user.fullName' | translate }}" [(ngModel)]="data.fullName" name="fullName"
         required>
-      <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      <mat-error *ngIf="formControl.invalid">{{getErrorMessage()  | translate}}</mat-error>
     </mat-form-field>
 
     <div class="row">
@@ -17,14 +17,14 @@
         <mat-form-field>
           <input matInput #input class="form-control" placeholder="{{ 'user.userName' | translate }}" [(ngModel)]="data.userName" 
             name="userName" required>
-          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+          <mat-error *ngIf="formControl.invalid" translate>{{getErrorMessage() | translate}}</mat-error>
         </mat-form-field>
       </div>
       <div class="column">
         <mat-form-field>
            <input matInput #input class="form-control"  [textMask]="{mask:mask}" placeholder="{{ 'user.dateBrith' | translate }}" [(ngModel)]="data.dateBrith" id="dateBrith"
             required>
-            <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+            <mat-error *ngIf="formControl.invalid">{{getErrorMessage() | translate}}</mat-error>
         </mat-form-field>
       </div>
     </div>
@@ -32,7 +32,7 @@
     <mat-form-field>
       <input matInput #input class="form-control" placeholder="{{ 'user.email' | translate }}" [(ngModel)]="data.email" name="email"
         required>
-      <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      <mat-error *ngIf="formControl.invalid">{{getErrorMessage()  | translate}}</mat-error>
     </mat-form-field>
     <!--<div class="row">
       <div class="column">

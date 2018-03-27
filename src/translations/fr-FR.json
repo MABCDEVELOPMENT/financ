@@ -45,5 +45,7 @@
   "user.confirmPassword": "Confirmer le mot de passe",
   "save": "Enregistrer",
   "cancel": "Annuler",
-  "fieldEmpty": "Ce champ doit être renseigné!"
+  "fieldEmpty": "Ce champ doit être renseigné!",
+  "invalidEmail": "Email invalide!",
+  "invalidDate": "Date invalide!"
 }
