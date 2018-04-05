@@ -40,6 +40,7 @@
   "user.username": "Nom d'utilisateur",
   "user.fullname": "Nom complet",
   "user.dateBrith": "Date d'anniversaire",
+  "user.phone": "Téléphone",
   "user.email": "Email",
   "user.password": "Mot de passe",
   "user.confirmPassword": "Confirmer le mot de passe",

@@ -1,14 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { MatPaginator,MatTableDataSource, MatSort, MatDialog } from '@angular/material';
+import { MatPaginator,MatTableDataSource, MatSort, MatDialog, PageEvent } from '@angular/material';
 
 import { User } from '@app/user/user-model';
 import { UserAddDialogComponent } from '@app/user/user-add/user-add.component';
-import { window } from 'rxjs/operators';
-import { Container } from '@angular/compiler/src/i18n/i18n_ast';
 import { UserEditDialogComponent } from '@app/user/user-edit/user-edit.component';
 import { I18nService } from '@app/core';
-
-
 
 
 @Component({
@@ -21,7 +17,7 @@ import { I18nService } from '@app/core';
 
 export class UserListComponent implements AfterViewInit {
   
-  displayedColumns = ['id', 'userName', 'email', 'cellPhone', 'actions'];
+  displayedColumns = ['id', 'fullName', 'userName', 'email', 'actions'];
   ELEMENT_DATA: User[] = [
     new User(1,  'Afred', 'ALESSANDRO FRED A DE SOUZA', 'fredalessandro@gmail.com', '81984147601', new Date('10/10/1971'), 'idkfa',true, null, new Date(),null,null),
     new User(2,  'Mary', 'JOZE MARY OLIVEIRA MASCARENHAS', 'marymascarenhas86@gmail.com', '81988186507', new Date('22/02/1989'), '100422',true, null, new Date(),null,null),
@@ -53,6 +49,9 @@ export class UserListComponent implements AfterViewInit {
 
   }
 
+  length = 100;
+  pageSize = 10;
+  pageSizeOptions = [5, 10, 25, 100];
 
   dataSource = new MatTableDataSource(this.ELEMENT_DATA);
   

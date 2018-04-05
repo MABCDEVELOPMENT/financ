@@ -140,7 +140,7 @@
                 <span translate>Security</span>
               </mat-expansion-panel-header>
               <mat-divider></mat-divider>
-              <a mat-list-item routerLink="/userList" routerLinkActive="active" (click)="isMobile && sidenav.close()">
+              <a mat-list-item routerLink="/userList" routerLinkActive="active" (click)="sidenav.close()">
                 <span translate>User</span>
               </a>
 
@@ -163,8 +163,8 @@
 
     <mat-sidenav-content>
 
-      <mat-toolbar >
-        <button class="menu-button" mat-icon-button (click)="sidenav.toggle()" fxHide.gt-sm>
+      <mat-toolbar>
+        <button class="menu-button" mat-icon-button (click)="sidenav.toggle()" >
           <mat-icon>menu</mat-icon>
         </button>
 
@@ -175,7 +175,7 @@
       </mat-toolbar>
       <div flex layout="column" layout-align="center center center center">
           <router-outlet></router-outlet>
-        </div>
+      </div>
     </mat-sidenav-content>
 
 
