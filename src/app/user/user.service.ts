@@ -2,10 +2,11 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {User} from '../user/user-model';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import { Alert } from 'selenium-webdriver';
 
 @Injectable()
 export class UserService {
-  private readonly API_URL = 'https://api.github.com/repos/angular/angular/Users';
+  private readonly API_URL = 'http://localhost:8088/user';
 
   dataChange: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([]);
   // Temporarily stores data from dialogs
@@ -23,7 +24,7 @@ export class UserService {
 
   /** CRUD METHODS */
   getAllUsers(): void {
-    this.httpClient.get<User[]>(this.API_URL).subscribe(data => {
+    this.httpClient.get<User[]>(this.API_URL+'/list').subscribe(data => {
         this.dataChange.next(data);
       },
       (error: HttpErrorResponse) => {
@@ -33,7 +34,14 @@ export class UserService {
 
   // DEMO ONLY, you can find working methods below
   addUser (user: User): void {
-    this.dialogData = user;
+    //this.dialogData = user;
+    this.httpClient.post(this.API_URL+'/add', user).subscribe(data => {
+      this.dialogData = user;
+      alert('Successfully added');
+      },
+      (err: HttpErrorResponse) => {
+        alert('Error occurred. Details: ' + err.name + ' ' + err.message);
+    });
   }
 
   updateUser (user: User): void {

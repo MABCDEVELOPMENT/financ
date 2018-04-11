@@ -1,3 +1,6 @@
+@import '../../../assets/styles/color.scss';
+@import '../../../assets/styles/crud.scss';
+
 .mat-cell:nth-child(1), // id
   .mat-header-cell:nth-child(1),
   {
@@ -19,14 +22,14 @@
   flex: 0 0 300px;
   }
   .mat-cell:nth-child(5) { // Edit
-    -webkit-text-fill-color: #008080 
+    -webkit-text-fill-color: $systemColor 
   }
   .mat-header-cell:nth-child(6), // Delete
   {
     -webkit-text-fill-color:white;
   flex: 0 0 10%;
   }
-
+ 
 
   
   

@@ -59,6 +59,6 @@ export class UserAddDialogComponent implements OnInit {
 
   public confirmAdd(): void {
 
-    //this.dataService.addUser(this.data);
+    this.dataService.addUser(this.data);
   }
 }

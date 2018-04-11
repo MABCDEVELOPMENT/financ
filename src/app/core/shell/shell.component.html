@@ -161,7 +161,7 @@
       </nav>
     </mat-sidenav>
 
-    <mat-sidenav-content>
+    <mat-sidenav-content class="container">
 
       <mat-toolbar>
         <button class="menu-button" mat-icon-button (click)="sidenav.toggle()" >
@@ -173,7 +173,7 @@
 
 
       </mat-toolbar>
-      <div flex layout="column" layout-align="center center center center">
+      <div  flex layout="column" layout-align="center center center center">
           <router-outlet></router-outlet>
       </div>
     </mat-sidenav-content>

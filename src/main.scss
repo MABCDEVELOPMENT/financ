@@ -3,6 +3,7 @@
  * Component-specific style should not go here and be included directly as part of the components.
  */
 
+@import './assets/styles/color.scss';
 @import "../node_modules/angular-calendar/css/angular-calendar.css";
 
 // Theme variables, must be included before the libraries to allow overriding defaults
@@ -59,29 +60,32 @@ body {
   flex-direction: column;
   max-height: 500px;
   min-width: 300px;
-  margin: 10px
+  margin: 10px;
+  background-color:	#c5cece;;
 }
 
 .mat-table {
   overflow: auto;
   max-height: 80%;
   margin: 5px
+  
 }
 
 .mat-toolbar {
-  background-color:	#008080;
+  background-color: $systemColor;
   color: rgb(130, 200, 235);
   font-stretch: expanded;
-  -webkit-text-fill-color: aliceblue
-  
-}
-.mat-form-field {
-  font-size: 10px;
-  width: 99%;
-  margin-left: 5px;
-  margin-right: 5px
+  -webkit-text-fill-color: aliceblue 
 }
 
+.mat-paginator {
+  font-size: 14px;
+  font-weight: bold;
+  width: auto;
+  margin: 5px;
+  background-color:	inherit
+  
+}
 
 .mat-row {
   font-family: $mat-font-family;
@@ -89,15 +93,16 @@ body {
   font-size: 8px;
   height: 1px;
 }
+
 .mat-header-row {
   position: sticky;
   position: -webkit-sticky;
   height: 1px;
   top: 0;
   font-family: $mat-font-family;
-  font-weight: normal;
+  font-weight: bold;
   font-size: 8px;
-  background-color:	#008080;
+  background-color:	$systemColor;
   -webkit-text-fill-color: white
 }
 
@@ -106,7 +111,7 @@ body {
 }
 
 .mat-row:nth-child(even){
-    background-color:#99C4EE;
+    background-color: #c5cece;;
     font-family: $mat-font-family;
     font-weight: normal;
     font-size: 8px;
@@ -115,7 +120,7 @@ body {
 }
 
 .mat-row:nth-child(odd){
-  background-color:	#AAD4FF;
+  background-color:	#aaafaf;
   font-family: $mat-font-family;
   font-weight: normal;
   font-size: 8px;
@@ -126,9 +131,47 @@ body {
 .top {
     position:fixed;
  }
+
  .container {
     max-width: inherit;
     max-height: inherit;
+    background-color:	#c5cece;
   }
 
- @import "./assets/styles/crud.scss";
+
+  // Shell
+  :host {
+    display: flex;
+    flex: 1;
+  }
+  
+  .mat-sidenav {
+    min-width: 270px;
+    max-width: 28%;
+    background-color:	#c5cece;
+  }
+  
+  .mat-accordion .mat-expansion-panel {
+    background-color:	#c5cece; 
+  }
+  
+  .has-border {
+    border-right: 1px solid rgba(0, 0, 0, 0.12);
+  }
+  
+  .mat-list {
+    padding-top: 0;
+    background-color: inherit;
+  }
+  
+  .mat-list-item {
+    text-decoration: none;
+  
+    &:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+  }
+  
+  .menu-button {
+    margin-right: 1rem;
+  }

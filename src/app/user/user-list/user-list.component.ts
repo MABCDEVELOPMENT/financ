@@ -73,7 +73,9 @@ export class UserListComponent implements AfterViewInit {
   }
 
   addNew(user: User) {
-    const dialogRef = this.dialog.open(UserAddDialogComponent, {data: {user: User}
+    const dialogRef = this.dialog.open(UserAddDialogComponent, {data: {user: User},
+      height: 'auto',
+      width: '600px'
     });
 
     dialogRef.afterClosed().subscribe(result => {

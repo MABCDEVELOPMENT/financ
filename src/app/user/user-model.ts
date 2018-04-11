@@ -10,9 +10,9 @@ export class User extends DataModel {
     public dateBrith:any,
     public password:string,
     public active:boolean,
-    public insertUser:User,
+    public insertUser:number,
     public insertDate:Date,
-    public updateUser:User,
+    public updateUser:number,
     public updateDate:Date){
         super(id)
     }
