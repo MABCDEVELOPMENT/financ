@@ -18,6 +18,7 @@ export class UserAddDialogComponent implements OnInit {
   hide:any;
   hideConf:any;
   confirmPassword:string;
+  user:User;
   
   form: FormGroup;
 
@@ -59,6 +60,7 @@ export class UserAddDialogComponent implements OnInit {
 
   public confirmAdd(): void {
 
+    //this.user = new User(null,  'Afred', 'ALESSANDRO FRED A DE SOUZA', 'fredalessandro@gmail.com', '81984147601', new Date(), 'idkfa',true, null, new Date(),null,new Date());   
     this.dataService.addUser(this.data);
   }
 }

@@ -8,7 +8,7 @@ import { filter, map, mergeMap } from 'rxjs/operators';
 import { environment } from '@env/environment';
 import { Logger, I18nService } from '@app/core';
 
-const log = new Logger('App');
+const log = new Logger('financ');
 
 @Component({
   selector: 'app-root',

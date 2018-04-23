@@ -5,6 +5,8 @@ import { User } from '@app/user/user-model';
 import { UserAddDialogComponent } from '@app/user/user-add/user-add.component';
 import { UserEditDialogComponent } from '@app/user/user-edit/user-edit.component';
 import { I18nService } from '@app/core';
+import { UserService } from '@app/user/user.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 @Component({
@@ -17,8 +19,9 @@ import { I18nService } from '@app/core';
 
 export class UserListComponent implements AfterViewInit {
   
+  error: HttpErrorResponse;
   displayedColumns = ['id', 'fullName', 'userName', 'email', 'actions'];
-  ELEMENT_DATA: User[] = [
+  ELEMENT_DATA: User[]; /* = [
     new User(1,  'Afred', 'ALESSANDRO FRED A DE SOUZA', 'fredalessandro@gmail.com', '81984147601', new Date('10/10/1971'), 'idkfa',true, null, new Date(),null,null),
     new User(2,  'Mary', 'JOZE MARY OLIVEIRA MASCARENHAS', 'marymascarenhas86@gmail.com', '81988186507', new Date('22/02/1989'), '100422',true, null, new Date(),null,null),
     new User(1,  'Afred', 'ALESSANDRO FRED A DE SOUZA', 'fredalessandro@gmail.com', '81984147601', new Date('27/10/1971'), 'idkfa',true, null, new Date(),null,null),
@@ -43,8 +46,11 @@ export class UserListComponent implements AfterViewInit {
     new User(2,  'Mary', 'JOZE MARY OLIVEIRA MASCARENHAS', 'marymascarenhas86@gmail.com', '81988186507', new Date('22/02/1989'), '100422',true, null, new Date(),null,null),
     new User(1,  'Afred', 'ALESSANDRO FRED A DE SOUZA', 'fredalessandro@gmail.com', '81984147601', new Date('27/10/1971'), 'idkfa',true, null, new Date(),null,null),
     new User(2,  'Mary', 'JOZE MARY OLIVEIRA MASCARENHAS', 'marymascarenhas86@gmail.com', '81988186507', new Date('22/02/1989'), '100422',true, null, new Date(),null,null)
-  ];
+  ]; */
+  isExpansionDetailRow = (i: number, row: any) => 
+  row.hasOwnProperty('detailRow');
   constructor( public dialog: MatDialog,
+               public dataService: UserService,
                public i18nService: I18nService) { 
 
   }
@@ -68,6 +74,7 @@ export class UserListComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
+    this.loadData();
     this.dataSource.sort      = this.sort;
     this.dataSource.paginator = this.paginator;
   }
@@ -111,7 +118,23 @@ export class UserListComponent implements AfterViewInit {
 
  
   public loadData() {
+
+      this.dataService.getAllUsers()
+                      .subscribe(
+                        data => {
+                          this.ELEMENT_DATA = data;
+                          this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+                        },
+                        error => {
+                          this.error = error;
+                          alert(error); 
+                        });
     
-  }
+  } 
+    
+ 
+      
+    
+
 
 }

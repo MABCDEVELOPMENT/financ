@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
+import { LoginService } from '@app/login/login.service';
+import { User } from '@app/user/user-model';
+import {HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { Login } from '@app/login/login.model';
+
 
 export interface Credentials {
   // Customize received credentials here
@@ -24,8 +29,9 @@ const credentialsKey = 'credentials';
 export class AuthenticationService {
 
   private _credentials: Credentials | null;
+  private readonly API_URL = '/login';
 
-  constructor() {
+  constructor(private httpClient: HttpClient) {
     const savedCredentials = sessionStorage.getItem(credentialsKey) || localStorage.getItem(credentialsKey);
     if (savedCredentials) {
       this._credentials = JSON.parse(savedCredentials);
@@ -39,12 +45,23 @@ export class AuthenticationService {
    */
   login(context: LoginContext): Observable<Credentials> {
     // Replace by proper authentication call
-    const data = {
-      username: context.username,
-      token: '123456'
-    };
-    this.setCredentials(data, context.remember);
+    let data = { username: context.username,
+      token: '123456'}
+    this.httpClient.post(this.API_URL, new Login(context.username,context.password)).subscribe(dataLogin => {
+        let user = dataLogin;
+        this.setCredentials(data, context.remember);
+        return of(data);
+      },
+      (err: HttpErrorResponse) => {
+        alert(err.error['errorMessage']);
+        data = {
+          username: null,
+          token: null
+        };
+       
+    });
     return of(data);
+    
   }
 
   /**

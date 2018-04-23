@@ -1,65 +1,47 @@
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
-import 'rxjs/Rx';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {User} from '../user/user-model';
 import {HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Headers, Http } from '@angular/http';
- 
-import 'rxjs/add/operator/toPromise';
 
-import { Alert, error } from 'selenium-webdriver';
+import { Alert } from 'selenium-webdriver';
 import { environment } from '@env/environment';
-
+import { Login } from '@app/login/login.model';
 
 @Injectable()
-export class UserService {
-  private readonly API_URL = '/user';
+export class LoginService {
+  private readonly API_URL = '/login';
   
-  dataChange: Observable<User[]> = new Observable<User[]>();
+  dataChange: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([]);
   // Temporarily stores data from dialogs
   dialogData: any;
-  private headers = new Headers({'Content-Type': 'application/json'});
+  user: User;
   constructor (private httpClient: HttpClient) {
      
   }
 
-  get data(): Observable<User[]> {
-    return this.dataChange;
+  get data(): User[] {
+    return this.dataChange.value;
   }
 
   getDialogData() {
     return this.dialogData;
   }
 
-  /** CRUD METHODS */
-  getAllUsers(): Observable<User[]> {
-    return this.httpClient.get(this.API_URL+'/list')
-                    .map(response => response)
-                    .catch(error=> Observable.throw(error.message));
-  }
-
   // DEMO ONLY, you can find working methods below
-  addUser (user: User): void {
+  login (userName: string,  password: string): any {
     //this.dialogData = user;
-    console.log(JSON.stringify(user));
 
-    this.httpClient.post(this.API_URL+'/add', user).subscribe(data => {
+    
+    this.httpClient.post(this.API_URL, new Login(userName,password)).subscribe(data => {
       //this.dialogData = user;
-      
-      alert('Successfully added');
+        return data;
       },
       (err: HttpErrorResponse) => {
         alert('Error occurred. Details: ' + err.name + ' ' + err.message);
+        return null;
     });
   }
-
-  updateUser (user: User): void {
-    this.dialogData = user;
-  }
-
-  deleteUser (id: number): void {
-    console.log(id);
-  }
+ 
 }
 
 
